@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sudoku Solver Visualizer</title>
+   <link rel="icon" type="image/png" href="game.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Sudoku Backtracking Visualizer</h1>
+
+ 
+  <div id="sudoku-board"></div>
+
+  <div class="buttons">
+    <button id="solve-btn">Solve</button>
+    <button id="reset-btn">Reset</button>
+    <button id="theme-toggle">🌞 Light Mode</button>
+
+  </div>
+
+  <div class="speed">
+    Speed:
+    <input type="range" id="speed" min="1" max="100" value="50">
+  </div>
+
+ <section class="info">
+  <h2>How it works</h2>
+  <ul>
+    <li>The solver uses the <strong>backtracking algorithm</strong> to fill empty cells.</li>
+    <li>It searches for an empty cell and tries numbers from <strong>1 to 9</strong>.</li>
+    <li>Each placement is checked against <strong>Sudoku rules</strong> for validity.</li>
+    <li>If a choice leads to a dead end, the algorithm <strong>backtracks</strong> by removing the number.</li>
+    <li>The process continues until a valid solution is found.</li>
+  </ul>
+
+  <h2>What this tells us</h2>
+  <ul>
+    <li>This visualization demonstrates how <strong>depth‑first search</strong> explores possible solutions.</li>
+    <li>It highlights why <strong>backtracking</strong> is essential for constraint‑based problems.</li>
+    <li>Incorrect early decisions can lead to <span style="color:#e74c3c; font-weight:bold;">dead ends</span>.</li>
+    <li>Such decisions must be <strong>undone</strong> to reach a valid solution.</li>
+  </ul>
+</section>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

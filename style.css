@@ -1,0 +1,161 @@
+/* DEFAULT DARK MODE */
+:root {
+  --bg: #1e1e1e;
+  --text: #f1f1f1;
+  --cell-bg: #2c2c2c;
+  --border: #666;
+}
+
+/* LIGHT MODE - only applied when body has .dark class (but now means light mode) */
+body.dark {
+  --bg: #f4f4f4;
+  --text: #000;
+  --cell-bg: #fff;
+  --border: #999;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0;
+}
+
+#theme-toggle {
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  justify-content: center;
+  margin: 20px auto;
+  gap: 0;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid var(--border);
+  background-color: var(--cell-bg);
+  color: var(--text);
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+/* THICK BORDERS FOR 3x3 BLOCKS */
+
+/* Right border for columns 3 and 6 */
+.cell:nth-child(9n+3),
+.cell:nth-child(9n+6) {
+  border-right: 3px solid #000;
+}
+
+/* Left border for columns 1 and 4 and 7 */
+.cell:nth-child(9n+1),
+.cell:nth-child(9n+4),
+.cell:nth-child(9n+7) {
+  border-left: 3px solid #000;
+}
+
+/* Top border for rows 1, 4, and 7 */
+.cell:nth-child(-n+9),
+.cell:nth-child(n+28):nth-child(-n+36),
+.cell:nth-child(n+55):nth-child(-n+63) {
+  border-top: 3px solid #000;
+}
+
+/* Bottom border for rows 3, 6, and 9 */
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54),
+.cell:nth-child(n+73):nth-child(-n+81) {
+  border-bottom: 3px solid #000;
+}
+
+.buttons {
+  margin-top: 15px;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.speed {
+  margin-top: 10px;
+}
+
+.active {
+  background-color: #ffeaa7;
+}
+
+.backtrack {
+  background-color: #fab1a0;
+}
+
+.error {
+  background-color: #ff7675 !important;
+}
+
+input:disabled {
+  background-color: #b2bec3;
+}
+
+/* User-entered numbers - DARK MODE DEFAULT */
+.given {
+  background-color: #0984e3 !important; /* Darker blue for dark mode */
+  color: #f5f6fa;
+  font-weight: bold;
+}
+
+/* Solver-filled numbers - DARK MODE DEFAULT */
+.solved {
+  color: #f5f6fa; /* bright white for dark mode */
+}
+
+/* LIGHT MODE overrides (when .dark class is present) */
+body.dark .solved {
+  color: #2d3436; /* dark gray for light mode */
+}
+
+body.dark .given {
+  background-color: #74b9ff !important; /* Lighter blue for light mode */
+  color: #000;
+}
+
+body.dark .cell {
+  color: #000; /* black text for light mode */
+}
+
+.info {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 15px;
+  text-align: left;
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 6px;
+}
+
+body.dark .info {
+  background-color: rgba(255,255,255,0.08);
+}
+
+.info h2 {
+  margin-bottom: 8px;
+}
+
+.info p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
