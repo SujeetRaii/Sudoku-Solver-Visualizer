@@ -8,7 +8,7 @@ const cells = [];
 let delay = 150;
 let stopSolving = false;
 
-/* ---------- CREATE GRID ---------- */
+
 for (let i = 0; i < 81; i++) {
   const input = document.createElement("input");
   input.type = "number";
@@ -43,23 +43,23 @@ themeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   themeBtn.textContent =
     document.body.classList.contains("dark")
-      ? "🌙 Dark Mode"  // When .dark class is present (light mode is active)
-      : "🌞 Light Mode"; // When .dark class is absent (dark mode is active)
+      ? "🌙 Dark Mode"
+      : "🌞 Light Mode"; 
 });
 
-/* ---------- SPEED CONTROL ---------- */
+
 speedSlider.addEventListener("input", () => {
   delay = 300 - speedSlider.value * 3;
 });
 
-/* ---------- UTIL ---------- */
+
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 function toggleInputs(state) {
   cells.forEach(cell => (cell.disabled = state));
 }
 
-/* ---------- BOARD HELPERS ---------- */
+
 function getBoard() {
   const board = Array.from({ length: 9 }, () => Array(9).fill(0));
   cells.forEach((cell, i) => {
@@ -73,7 +73,7 @@ function getBoard() {
 function updateCell(r, c, val, cls) {
   const idx = r * 9 + c;
 
-  // solver should NOT touch given cells
+
   if (cells[idx].classList.contains("given")) return;
 
   cells[idx].value = val === 0 ? "" : val;
@@ -98,7 +98,7 @@ function resetBoard() {
   });
 }
 
-/* ---------- VALIDATION ---------- */
+
 function isBoardValid(board) {
   let valid = true;
   cells.forEach(c => c.classList.remove("error"));
@@ -155,7 +155,7 @@ function isBoardValid(board) {
   return valid;
 }
 
-/* ---------- SOLVER HELPERS ---------- */
+
 function isValid(board, r, c, num) {
   for (let i = 0; i < 9; i++) {
     if (board[r][i] === num || board[i][c] === num) return false;
@@ -177,7 +177,7 @@ function findEmpty(board) {
   return null;
 }
 
-/* ---------- ASYNC BACKTRACKING SOLVER ---------- */
+
 async function solveSudoku(board) {
   if (stopSolving) return false;
 
@@ -204,7 +204,6 @@ async function solveSudoku(board) {
   return false;
 }
 
-/* ---------- BUTTON HANDLERS ---------- */
 solveBtn.addEventListener("click", async () => {
   const board = getBoard();
 
@@ -217,7 +216,7 @@ solveBtn.addEventListener("click", async () => {
   toggleInputs(true);
   solveBtn.disabled = true;
 
-  // mark given cells
+
   cells.forEach(cell => {
     if (cell.value !== "") cell.classList.add("given");
   });
@@ -232,3 +231,4 @@ resetBtn.addEventListener("click", () => {
   stopSolving = true;
   resetBoard();
 });
+
